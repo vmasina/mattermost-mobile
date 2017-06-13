@@ -17,6 +17,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-picker';
 import {injectIntl, intlShape} from 'react-intl';
+
 import {RequestStatus} from 'mattermost-redux/constants';
 
 import Autocomplete from 'app/components/autocomplete';
@@ -113,7 +114,11 @@ class PostTextbox extends PureComponent {
     }
 
     blur = () => {
-        this.refs.input.blur();
+        this.postTextbox.blur();
+    };
+
+    getInput = () => {
+        return this.postTextbox;
     };
 
     handleContentSizeChange = (h) => {
@@ -296,6 +301,10 @@ class PostTextbox extends PureComponent {
         this.props.actions.handleUploadFiles(images, this.props.rootId);
     };
 
+    setInput = (ref) => {
+        this.postTextbox = ref;
+    };
+
     showFileAttachmentOptions = () => {
         this.blur();
         const options = {
@@ -437,7 +446,7 @@ class PostTextbox extends PureComponent {
                         </TouchableOpacity>
                         <View style={style.inputContainer}>
                             <TextInput
-                                ref='input'
+                                ref={this.setInput}
                                 value={textValue}
                                 onChangeText={this.handleTextChange}
                                 onSelectionChange={this.handleSelectionChange}

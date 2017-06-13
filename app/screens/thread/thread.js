@@ -3,7 +3,12 @@
 
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet} from 'react-native';
+import {
+    Dimensions,
+    StyleSheet,
+    View
+} from 'react-native';
+import {KeyboardAccessoryView} from 'react-native-keyboard-input'; //eslint-disable-line
 
 import KeyboardLayout from 'app/components/layout/keyboard_layout';
 import PostList from 'app/components/post_list';
@@ -27,7 +32,9 @@ export default class Thread extends PureComponent {
         posts: PropTypes.array.isRequired
     };
 
-    state = {};
+    state = {
+        keyboardAccessoryViewHeight: 64
+    };
 
     componentWillReceiveProps(nextProps) {
         if (!this.state.lastViewedAt) {
@@ -43,33 +50,49 @@ export default class Thread extends PureComponent {
         this.props.actions.handleCommentDraftChanged(this.props.rootId, value);
     };
 
-    render() {
-        const {channelId, draft, files, myMember, navigator, posts, rootId, theme} = this.props;
-        const style = getStyle(theme);
+    keyboardAccessoryViewContent = () => {
+        const {channelId, draft, files, navigator} = this.props;
 
         return (
-            <KeyboardLayout
-                behavior='padding'
-                style={style.container}
-                keyboardVerticalOffset={65}
-            >
+            <PostTextbox
+                ref={this.attachPostTextbox}
+                files={files}
+                value={draft}
+                channelId={channelId}
+                onChangeText={this.handleDraftChanged}
+                navigator={navigator}
+            />
+        );
+    };
+
+    keyboardAccessoryHeightChanged = (height) => {
+        this.setState({keyboardAccessoryViewHeight: height});
+    };
+
+    render() {
+        const {myMember, navigator, posts, theme} = this.props;
+        const style = getStyle(theme);
+        const {keyboardAccessoryViewHeight} = this.state;
+        const {height: deviceHeight, width: deviceWidth} = Dimensions.get('window');
+
+        return (
+            <View>
                 <StatusBar/>
-                <PostList
-                    indicateNewMessages={true}
-                    posts={posts}
-                    currentUserId={myMember.user_id}
-                    lastViewedAt={this.state.lastViewedAt}
-                    navigator={navigator}
-                />
-                <PostTextbox
-                    rootId={rootId}
-                    value={draft}
-                    files={files}
-                    channelId={channelId}
-                    onChangeText={this.handleDraftChanged}
-                    navigator={navigator}
-                />
-            </KeyboardLayout>
+                <KeyboardLayout
+                    behavior='padding'
+                    style={[style.container, {height: deviceHeight - keyboardAccessoryViewHeight, width: deviceWidth}]}
+                    keyboardVerticalOffset={0}
+                >
+                    <PostList
+                        indicateNewMessages={true}
+                        posts={posts}
+                        currentUserId={myMember.user_id}
+                        lastViewedAt={this.state.lastViewedAt}
+                        navigator={navigator}
+                    />
+                </KeyboardLayout>
+
+            </View>
         );
     }
 }
@@ -77,7 +100,6 @@ export default class Thread extends PureComponent {
 const getStyle = makeStyleSheetFromTheme((theme) => {
     return StyleSheet.create({
         container: {
-            flex: 1,
             backgroundColor: theme.centerChannelBg
         }
     });

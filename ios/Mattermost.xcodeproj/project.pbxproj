@@ -36,6 +36,8 @@
 		584837D6B55F405F908A2053 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC6B9FDC0AD45A6BFA4FBCD /* libBVLinearGradient.a */; };
 		5E1AF7B72B8D4A4E9E53FF9D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 005346E5C0E542BFABAE1411 /* FontAwesome.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		7F1DA96A1ED3D495009D213A /* libRCTCustomInputController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1DA9411ED3D44E009D213A /* libRCTCustomInputController.a */; };
+		7F1DA96B1ED3D4B5009D213A /* libKeyboardTrackingView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1DA9691ED3D45E009D213A /* libKeyboardTrackingView.a */; };
 		62A8448264674B4D95A5A7C2 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C78A387124874496AD2C1466 /* OpenSans-Semibold.ttf */; };
 		69AC753E496743BABB7A7124 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E617BF0F36D4E738F51D169 /* OpenSans-SemiboldItalic.ttf */; };
 		7F2691A11EE1DC6A007574FE /* libRNNotifications.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2691A01EE1DC51007574FE /* libRNNotifications.a */; };
@@ -270,6 +272,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNNotifications;
 		};
+		7F1DA9401ED3D44E009D213A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F1DA9381ED3D44D009D213A /* RCTCustomInputController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 39DF4FE71E00394E00F5B4B2;
+			remoteInfo = RCTCustomInputController;
+		};
+		7F1DA9681ED3D45E009D213A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F1DA9641ED3D45E009D213A /* KeyboardTrackingView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D834CED81CC64F2400FA5668;
+			remoteInfo = KeyboardTrackingView;
+		};
 		7F4890681E3B7D3B008EDBEA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 59954D479A89488091EB588F /* RNSearchBar.xcodeproj */;
@@ -394,6 +410,8 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7DCC3D826CE640AF8F491692 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		7F26919B1EE1DC51007574FE /* RNNotifications.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNNotifications.xcodeproj; path = "../node_modules/react-native-notifications/RNNotifications/RNNotifications.xcodeproj"; sourceTree = "<group>"; };
+		7F1DA9381ED3D44D009D213A /* RCTCustomInputController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCustomInputController.xcodeproj; path = "../node_modules/react-native-keyboard-input/lib/ios/RCTCustomInputController.xcodeproj"; sourceTree = "<group>"; };
+		7F1DA9641ED3D45E009D213A /* KeyboardTrackingView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeyboardTrackingView.xcodeproj; path = "../node_modules/react-native-keyboard-tracking-view/lib/KeyboardTrackingView.xcodeproj"; sourceTree = "<group>"; };
 		7F292A701E8AB73400A450A3 /* SplashScreenResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SplashScreenResource; sourceTree = "<group>"; };
 		7F292AA41E8ABB1100A450A3 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = SplashScreenResource/LaunchScreen.xib; sourceTree = "<group>"; };
 		7F292AA51E8ABB1100A450A3 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = SplashScreenResource/splash.png; sourceTree = "<group>"; };
@@ -453,6 +471,8 @@
 				2E3655C7E15049DBBC3A666B /* libRNImagePicker.a in Frameworks */,
 				7FC200E81EBB65370099331B /* libReactNativeNavigation.a in Frameworks */,
 				7F2691A11EE1DC6A007574FE /* libRNNotifications.a in Frameworks */,
+				7F1DA96A1ED3D495009D213A /* libRCTCustomInputController.a in Frameworks */,
+				7F1DA96B1ED3D4B5009D213A /* libKeyboardTrackingView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +671,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7F1DA9391ED3D44D009D213A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F1DA9411ED3D44E009D213A /* libRCTCustomInputController.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F1DA9651ED3D45E009D213A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F1DA9691ED3D45E009D213A /* libKeyboardTrackingView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7F48904C1E3B7D3B008EDBEA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -713,6 +749,8 @@
 			isa = PBXGroup;
 			children = (
 				7F26919B1EE1DC51007574FE /* RNNotifications.xcodeproj */,
+				7F1DA9641ED3D45E009D213A /* KeyboardTrackingView.xcodeproj */,
+				7F1DA9381ED3D44D009D213A /* RCTCustomInputController.xcodeproj */,
 				7FC200BC1EBB65100099331B /* ReactNativeNavigation.xcodeproj */,
 				7F6877AA1E7835E50094B63F /* ToolTipMenu.xcodeproj */,
 				7F63D27B1E6C957C001FAE12 /* RCTPushNotification.xcodeproj */,
@@ -852,12 +890,20 @@
 					ProjectRef = 7DCC3D826CE640AF8F491692 /* BVLinearGradient.xcodeproj */;
 				},
 				{
+					ProductGroup = 7F1DA9651ED3D45E009D213A /* Products */;
+					ProjectRef = 7F1DA9641ED3D45E009D213A /* KeyboardTrackingView.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
 				{
 					ProductGroup = 5E91572E1DD0AC6500FF2AA8 /* Products */;
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
+				},
+				{
+					ProductGroup = 7F1DA9391ED3D44D009D213A /* Products */;
+					ProjectRef = 7F1DA9381ED3D44D009D213A /* RCTCustomInputController.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -1150,6 +1196,20 @@
 			fileType = archive.ar;
 			path = libRNNotifications.a;
 			remoteRef = 7F26919F1EE1DC51007574FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F1DA9411ED3D44E009D213A /* libRCTCustomInputController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCustomInputController.a;
+			remoteRef = 7F1DA9401ED3D44E009D213A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7F1DA9691ED3D45E009D213A /* libKeyboardTrackingView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKeyboardTrackingView.a;
+			remoteRef = 7F1DA9681ED3D45E009D213A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7F4890691E3B7D3B008EDBEA /* libRNSearchBar.a */ = {

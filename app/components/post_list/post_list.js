@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
     ListView,
+    Platform,
     RefreshControl,
     View
 } from 'react-native';
@@ -204,6 +205,7 @@ export default class PostList extends Component {
                 onEndReachedThreshold={200}
                 pageSize={10}
                 refreshControl={this.renderRefreshControl()}
+                keyboardDismissMode={Platform.OS === 'android' ? 'on-drag' : 'interactive'}
             />
         );
     }

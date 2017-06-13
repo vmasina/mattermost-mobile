@@ -11,6 +11,7 @@ import {
     StyleSheet,
     View
 } from 'react-native';
+import {KeyboardAccessoryView} from 'react-native-keyboard-input';
 
 import {RequestStatus} from 'mattermost-redux/constants';
 import EventEmitter from 'mattermost-redux/utils/event_emitter';
@@ -52,6 +53,10 @@ class Channel extends PureComponent {
         subscribeToHeaderEvent: PropTypes.func,
         unsubscribeFromHeaderEvent: PropTypes.func,
         webSocketRequest: PropTypes.object
+    };
+
+    state = {
+        keyboardAccessoryViewHeight: 64
     };
 
     componentWillMount() {
@@ -97,7 +102,7 @@ class Channel extends PureComponent {
     };
 
     blurPostTextBox = () => {
-        this.postTextbox.getWrappedInstance().getWrappedInstance().blur();
+        this.postTextbox.getInput().blur();
     };
 
     goToChannelInfo = () => {
@@ -148,6 +153,26 @@ class Channel extends PureComponent {
         this.props.actions.selectFirstAvailableTeam();
     };
 
+    keyboardAccessoryViewContent = () => {
+        const {currentChannel, drafts, navigator} = this.props;
+        const channelDraft = drafts[currentChannel.id] || {};
+
+        return (
+            <PostTextbox
+                ref={this.attachPostTextbox}
+                files={channelDraft.files}
+                value={channelDraft.draft}
+                channelId={currentChannel.id}
+                onChangeText={this.handleDraftChanged}
+                navigator={navigator}
+            />
+        );
+    };
+
+    keyboardAccessoryHeightChanged = (height) => {
+        this.setState({keyboardAccessoryViewHeight: height});
+    };
+
     loadChannels = (teamId) => {
         const {
             loadChannelsIfNecessary,
@@ -179,8 +204,9 @@ class Channel extends PureComponent {
             );
         }
 
-        const channelDraft = this.props.drafts[currentChannel.id] || {};
         const style = getStyleFromTheme(theme);
+        const {keyboardAccessoryViewHeight} = this.state;
+        const {height: deviceHeight, width: deviceWidth} = Dimensions.get('window');
 
         return (
             <ChannelDrawer
@@ -190,7 +216,7 @@ class Channel extends PureComponent {
                 <StatusBar/>
                 <KeyboardLayout
                     behavior='padding'
-                    style={{flex: 1, backgroundColor: theme.centerChannelBg}}
+                    style={{backgroundColor: theme.centerChannelBg, height: deviceHeight - keyboardAccessoryViewHeight, width: deviceWidth}}
                     keyboardVerticalOffset={0}
                 >
                     <View style={style.postList}>
@@ -199,15 +225,13 @@ class Channel extends PureComponent {
                             navigator={navigator}
                         />
                     </View>
-                    <PostTextbox
-                        ref={this.attachPostTextbox}
-                        files={channelDraft.files}
-                        value={channelDraft.draft}
-                        channelId={currentChannel.id}
-                        onChangeText={this.handleDraftChanged}
-                        navigator={navigator}
-                    />
                 </KeyboardLayout>
+                <KeyboardAccessoryView
+                    renderContent={this.keyboardAccessoryViewContent}
+                    trackInteractive={true}
+                    kbInputRef={this.postTextbox}
+                    onHeightChanged={this.keyboardAccessoryHeightChanged}
+                />
                 <View style={{flex: 1, position: 'absolute'}}>
                     <View style={style.header}>
                         <ChannelDrawerButton/>
